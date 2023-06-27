@@ -1,0 +1,120 @@
+{% extends 'adminbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+	th {
+		background-color: #e30577;
+		color: white;
+	}
+</style>
+<div style="margin: 50px">
+	<h1 style="margin: 10px">SMPS</h1>
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td>Name</td>
+				<td>
+					<input type="text" class="form-control" name="txtName" required />
+				</td>
+			</tr>
+			<tr>
+				<td>Type</td>
+				<td>
+					<input type="text" class="form-control" name="txtType" required />
+				</td>
+			</tr>
+			<tr>
+				<td>Output Wattage</td>
+				<td>
+					<input type="text" class="form-control" name="txtWattage" required />
+				</td>
+			</tr>
+			<tr>
+				<td>Brand</td>
+				<td>
+					<select class="form-control" name="brand">
+						<option value="" selected disabled>Select Brand</option>
+						{% for d in brand %}
+						<option value="{{d.id}}">{{d.brand}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Category</td>
+				<td>
+					<select class="form-control" name="category">
+						<option value="" selected disabled>Select Category</option>
+						{% for d in datacat %}
+						<option value="{{d.id}}">{{d.category}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Rate</td>
+				<td>
+					<input type="text" class="form-control" name="txtRate" required />
+				</td>
+			</tr>
+			<tr>
+				<td>Image</td>
+				<td>
+					<input type="file" class="form-control" name="img" required />
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input
+						type="submit"
+						class="btn btn-info"
+						style="
+							background-color: #e30577;
+							width: 120px;
+							border: none;
+							outline: none;
+						"
+						value="Submit"
+					/>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<table border="1" class="table" style="margin-top: 50px">
+		<tr>
+			<th>ID</th>
+			<th>SMPS</th>
+			<th>TYPE</th>
+			<th>OUTPUT WATTAGE</th>
+			<th>CATEGORY</th>
+			<th>RATE</th>
+			<th>BRAND</th>
+			<th>IMAGE</th>
+		</tr>
+		{% for d in data %}
+		<tr>
+			<td>{{d.id}}</td>
+			<td>{{d.name}}</td>
+			<td>{{d.type}}</td>
+			<td>{{d.wattage}}</td>
+			<td>{{d.category.category}}</td>
+			<td>{{d.rate}}</td>
+			<td>{{d.brand.brand}}</td>
+			<td>
+				<a href="../static/media/{{d.image}}"
+					><img src="../static/media/{{d.image}}" width="200" alt=""
+				/></a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') alert(msg);
+</script>
+{% endblock %}

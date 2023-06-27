@@ -1,0 +1,30 @@
+{% extends 'courierbase.html' %}
+{% block content %}
+<style>
+th,td{
+    padding: 10px;
+}
+</style>
+<div style="margin: 50px;">
+    <h1 style="margin: 10px;">Status</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+
+            <tr>
+                <td>Status</td>
+                <td><input type="text" class="form-control" name="status"  required></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" class="btn btn-primary" style="background-color: #e30577; width: 120px; border:none; outline: none;" value="Update"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+        alert(msg)
+    </script>
+{% endblock %}

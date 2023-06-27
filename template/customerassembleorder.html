@@ -1,0 +1,88 @@
+{% extends 'customerbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+	th {
+		background-color: #e30577;
+		color: white;
+	}
+</style>
+<div style="margin: 50px">
+	<h1 style="margin: 10px">Your PC</h1>
+	<table border="1" style="margin-top: 50px">
+		<tr>
+			<td>INVOICE NO</td>
+			<td>DATE</td>
+			<td>ITEMS</td>
+			<td>TOTAL</td>
+			<td>STATUS</td>
+		</tr>
+
+		{% for d in data %}
+		<tr>
+			<td>{{d.id}}</td>
+			<td>{{d.orderDate}}</td>
+			<td>
+				<table>
+					<tr>
+						<td>DISPLAY :</td>
+						<td>{{d.display.name}}</td>
+						<td>Rs.{{d.display.rate}}</td>
+					</tr>
+					<tr>
+						<td>PROCESSOR :</td>
+						<td>{{d.processor.name}}</td>
+						<td>Rs.{{d.processor.rate}}</td>
+					</tr>
+					<tr>
+						<td>HDD :</td>
+						<td>{{d.hdd.name}}</td>
+						<td>Rs.{{d.hdd.rate}}</td>
+					</tr>
+					<tr>
+						<td>RAM :</td>
+						<td>{{d.ram.name}}</td>
+						<td>Rs.{{d.ram.rate}}</td>
+					</tr>
+					<tr>
+						<td>KEYBOARD :</td>
+						<td>{{d.keyboard.name}}</td>
+						<td>Rs.{{d.keyboard.rate}}</td>
+					</tr>
+					<tr>
+						<td>MOUSE :</td>
+						<td>{{d.mouse.name}}</td>
+						<td>Rs.{{d.mouse.rate}}</td>
+					</tr>
+					<tr>
+						<td>CABLES :</td>
+						<td>{{d.cables.name}}</td>
+						<td>Rs.{{d.cables.rate}}</td>
+					</tr>
+					<tr>
+						<td>MOTHERBOARD :</td>
+						<td>{{d.motherboard.name}}</td>
+						<td>Rs.{{d.motherboard.rate}}</td>
+					</tr>
+					<tr>
+						<td>SMPS :</td>
+						<td>{{d.smps.name}}</td>
+						<td>Rs.{{d.smps.rate}}</td>
+					</tr>
+					<tr>
+						<td>CABINET :</td>
+						<td>{{d.cabin.name}}</td>
+						<td>Rs.{{d.cabin.rate}}</td>
+					</tr>
+				</table>
+			</td>
+			<td>{{d.total}}</td>
+			<td>{{d.status}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+
+{% endblock %}

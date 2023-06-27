@@ -1,0 +1,83 @@
+{% extends 'courierbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div style="margin: 50px">
+	<h1 style="margin: 10px">Profile</h1>
+	<form method="POST">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td>Name</td>
+				<td>
+					<input
+						type="text"
+						class="form-control"
+						name="txtName"
+						value="{{d.name}}"
+						pattern="[a-zA-Z ]+"
+						required
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td>
+					<textarea name="txtAddress" class="form-control" required>
+{{d.address}}</textarea
+					>
+				</td>
+			</tr>
+			<tr>
+				<td>Contact</td>
+				<td>
+					<input
+						type="text"
+						class="form-control"
+						name="txtContact"
+						value="{{d.contact}}"
+						pattern="[6789][0-9]{9}"
+						required
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td>
+					<input
+						type="email"
+						class="form-control"
+						readonly
+						name="txtEmail"
+						value="{{d.email}}"
+						required
+					/>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input
+						type="submit"
+						class="btn btn-primary"
+						style="
+							background-color: #e30577;
+							width: 120px;
+							border: none;
+							outline: none;
+						"
+						value="Update"
+					/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script>
+	var msg = '{{msg}}';
+	if (msg != '') alert(msg);
+</script>
+{% endblock %}

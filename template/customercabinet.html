@@ -1,0 +1,55 @@
+{% extends 'customerbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+		background-color: #f8d1e5b3;
+		color: #000;
+	}
+	th {
+		background-color: #e30577;
+		color: white;
+	}
+	.forBg {
+		height: 100vh;
+		background-image: url('/static/images/case.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+</style>
+<div style="margin: 50px">
+	<h1 style="margin: 10px">Cabinet</h1>
+
+	<table border="1" class="table" style="margin-top: 50px">
+		<tr>
+			<th>ID</th>
+			<th>CABINET</th>
+			<th>TYPE</th>
+			<th>DESCRIPTION</th>
+			<th>MATERIAL</th>
+			<th>SPECIALITY</th>
+			<th>RATE</th>
+			<th colspan="2">image</th>
+		</tr>
+		{% for d in data %}
+		<tr>
+			<td>{{d.id}}</td>
+			<td>{{d.name}}</td>
+			<td>{{d.type}}</td>
+			<td>{{d.desc}}</td>
+			<td>{{d.material}}</td>
+			<td>{{d.category.category}}</td>
+			<td>{{d.rate}}</td>
+			<td>
+				<a href="../static/media/{{d.image}}"
+					><img src="../static/media/{{d.image}}" width="200" alt=""
+				/></a>
+			</td>
+
+			<td><a href="/customerkeyboard?id={{d.id}}">Select</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'customerbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+</style>
+<div style="margin: 50px">
+	<h1 style="margin: 10px">Requirement</h1>
+	<br />
+	<form method="POST">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td>Select your requirement</td>
+				<td>
+					<select class="form-control" name="txtSpeciality">
+						<option value="" selected disabled>Select Requirement</option>
+						{% for c in cats %}
+						<option value="{{c.id}}">{{c.category}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td>
+					<input
+						type="submit"
+						class="btn btn-primary"
+						style="
+							background-color: #e30577;
+							width: 120px;
+							border: none;
+							outline: none;
+						"
+						value="Submit"
+					/>
+				</td>
+			</tr>
+		</table>
+		<br />
+	</form>
+</div>
+
+{% endblock %}

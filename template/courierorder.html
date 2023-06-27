@@ -1,0 +1,104 @@
+{% extends 'courierbase.html' %} {% block content %}
+<style>
+	th,
+	td {
+		padding: 10px;
+	}
+	th {
+		background-color: #e30577;
+		color: white;
+	}
+</style>
+<div style="margin: 50px">
+	<h1 style="margin: 10px">ORDER</h1>
+	<table border="1" style="margin-top: 50px">
+		<tr>
+			<td>INVOICE NO</td>
+			<td>DATE</td>
+			<td>CUSTOMER</td>
+			<td>DETAILS</td>
+			<td>ITEMS</td>
+			<td colspan="2">STATUS</td>
+		</tr>
+
+		{% for d in data %}
+		<tr>
+			<td>{{d.assemble.id}}</td>
+			<td>{{d.assemble.customer.name}}</td>
+			<td>
+				{{d.assemble.customer.address}} <br />
+				{{d.assemble.customer.contact}}
+			</td>
+			<td>{{d.assemble.orderDate}}</td>
+			<td>
+				<table>
+					<tr>
+						<td>DISPLAY :</td>
+						<td>{{d.assemble.display.name}}</td>
+						<td>Rs.{{d.assemble.display.rate}}</td>
+					</tr>
+					<tr>
+						<td>PROCESSOR :</td>
+						<td>{{d.assemble.processor.name}}</td>
+						<td>Rs.{{d.assemble.processor.rate}}</td>
+					</tr>
+					<tr>
+						<td>HDD :</td>
+						<td>{{d.assemble.hdd.name}}</td>
+						<td>Rs.{{d.assemble.hdd.rate}}</td>
+					</tr>
+					<tr>
+						<td>RAM :</td>
+						<td>{{d.assemble.ram.name}}</td>
+						<td>Rs.{{d.assemble.ram.rate}}</td>
+					</tr>
+					<tr>
+						<td>KEYBOARD :</td>
+						<td>{{d.assemble.keyboard.name}}</td>
+						<td>Rs.{{d.assemble.keyboard.rate}}</td>
+					</tr>
+					<tr>
+						<td>MOUSE :</td>
+						<td>{{d.assemble.mouse.name}}</td>
+						<td>Rs.{{d.assemble.mouse.rate}}</td>
+					</tr>
+					<tr>
+						<td>CABLES :</td>
+						<td>{{d.assemble.cables.name}}</td>
+						<td>Rs.{{d.assemble.cables.rate}}</td>
+					</tr>
+					<tr>
+						<td>MOTHERBOARD :</td>
+						<td>{{d.assemble.motherboard.name}}</td>
+						<td>Rs.{{d.assemble.motherboard.rate}}</td>
+					</tr>
+					<tr>
+						<td>SMPS :</td>
+						<td>{{d.assemble.smps.name}}</td>
+						<td>Rs.{{d.assemble.smps.rate}}</td>
+					</tr>
+					<tr>
+						<td>CABINET :</td>
+						<td>{{d.assemble.cabin.name}}</td>
+						<td>Rs.{{d.assemble.cabin.rate}}</td>
+					</tr>
+				</table>
+			</td>
+			<td>{{d.assemble.total}}</td>
+
+			<td>
+				{% if d.assemble.status != "Delivered" %}
+				<a href="/courierupdate?id={{d.assemble.id}}">Update order</a>
+				{% else %} {{d.assemble.status}} {% endif %}
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<br /><br /><br />
+</div>
+<body>
+	<li>Ordered</li>
+	<li>Passed to courier</li>
+    <li>Delivered</li>
+</body>
+{% endblock %}
